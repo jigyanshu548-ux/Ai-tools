@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Tools Hub — Best AI Tools & Earn Online</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --card: #16161f;
+    --border: #252535;
+    --accent: #7c3aed;
+    --accent2: #06b6d4;
+    --gold: #f59e0b;
+    --text: #e8e8f0;
+    --muted: #6b6b85;
+    --green: #10b981;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 2.5rem;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: rgba(10,10,15,0.92);
+    backdrop-filter: blur(12px);
+    z-index: 100;
+  }
+
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.4rem;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.5px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--text); }
+
+  .settings-btn {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.5rem 1.1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: all 0.2s;
+  }
+
+  .settings-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* HERO BANNER */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    min-height: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: var(--hero-bg-url, none);
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.35);
+    transition: background-image 0.4s;
+  }
+
+  .hero-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(124,58,237,0.35) 0%, rgba(6,182,212,0.2) 50%, rgba(10,10,15,0.8) 100%);
+  }
+
+  /* animated grid */
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(124,58,237,0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(124,58,237,0.08) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: gridMove 8s linear infinite;
+    opacity: 0.6;
+  }
+
+  @keyframes gridMove {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(50px); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(124,58,237,0.2);
+    border: 1px solid rgba(124,58,237,0.4);
+    color: #a78bfa;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 0.35rem 1rem;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    animation: fadeUp 0.7s ease both 0.1s;
+  }
+
+  .hero h1 span {
+    background: linear-gradient(135deg, var(--accent2), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero p {
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.7s ease both 0.2s;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, var(--accent), #5b21b6);
+    color: white;
+    text-decoration: none;
+    padding: 0.85rem 2rem;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+    animation: fadeUp 0.7s ease both 0.3s;
+  }
+
+  .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(124,58,237,0.4); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* SECTIONS */
+  .section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+
+  .section-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 0.6rem;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  /* TOOLS GRID */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .tool-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.8rem;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tool-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(124,58,237,0.06), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .tool-card:hover {
+    border-color: rgba(124,58,237,0.4);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  }
+
+  .tool-card:hover::before { opacity: 1; }
+
+  .tool-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .tool-badge {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    background: rgba(16,185,129,0.15);
+    border: 1px solid rgba(16,185,129,0.3);
+    color: var(--green);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-radius: 100px;
+  }
+
+  .tool-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .tool-card p {
+    color: var(--muted);
+    font-size: 0.88rem;
+    line-height: 1.6;
+    margin-bottom: 1.4rem;
+  }
+
+  .tool-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.2rem;
+  }
+
+  .tool-earn {
+    font-size: 0.82rem;
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  .tool-earn span { color: var(--muted); font-weight: 400; }
+
+  .stars {
+    color: var(--gold);
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+  }
+
+  .tool-link {
+    display: block;
+    background: rgba(124,58,237,0.12);
+    border: 1px solid rgba(124,58,237,0.3);
+    color: #a78bfa;
+    text-decoration: none;
+    text-align: center;
+    padding: 0.65rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+
+  .tool-link:hover {
+    background: rgba(124,58,237,0.25);
+    border-color: var(--accent);
+    color: white;
+  }
+
+  /* EARNING BANNER */
+  .earn-banner {
+    background: linear-gradient(135deg, rgba(124,58,237,0.15), rgba(6,182,212,0.1));
+    border: 1px solid rgba(124,58,237,0.3);
+    border-radius: 20px;
+    padding: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+    margin: 0 2rem;
+  }
+
+  .earn-text { flex: 1; min-width: 240px; }
+  .earn-text h2 { font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 700; margin-bottom: 0.7rem; }
+  .earn-text p { color: var(--muted); line-height: 1.7; }
+
+  .earn-stats {
+    display: flex;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--gold), #f97316);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .stat-label { color: var(--muted); font-size: 0.8rem; margin-top: 0.2rem; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  /* ===== SETTINGS PANEL ===== */
+  .settings-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(4px);
+    z-index: 999;
+    display: none;
+    align-items: flex-start;
+    justify-content: flex-end;
+  }
+
+  .settings-overlay.open { display: flex; }
+
+  .settings-panel {
+    background: var(--surface);
+    border-left: 1px solid var(--border);
+    width: 420px;
+    max-width: 95vw;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 2rem;
+    animation: slideIn 0.3s ease;
+  }
+
+  @keyframes slideIn {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+  }
+
+  .settings-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  .settings-header h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+  }
+
+  .close-btn {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+
+  .close-btn:hover { color: var(--text); border-color: var(--muted); }
+
+  .settings-section {
+    margin-bottom: 2rem;
+  }
+
+  .settings-section-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .form-group {
+    margin-bottom: 1.2rem;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+    color: #b0b0c8;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%;
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.65rem 0.9rem;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-family: 'DM Sans', sans-serif;
+    transition: border-color 0.2s;
+    outline: none;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: var(--accent);
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 70px;
+  }
+
+  .tool-entry {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+
+  .tool-entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.8rem;
+  }
+
+  .tool-entry-title {
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  .remove-btn {
+    background: rgba(239,68,68,0.1);
+    border: 1px solid rgba(239,68,68,0.2);
+    color: #f87171;
+    padding: 0.2rem 0.6rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    transition: all 0.2s;
+  }
+
+  .remove-btn:hover { background: rgba(239,68,68,0.2); }
+
+  .add-tool-btn {
+    width: 100%;
+    background: rgba(124,58,237,0.1);
+    border: 1px dashed rgba(124,58,237,0.3);
+    color: #a78bfa;
+    padding: 0.7rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+
+  .add-tool-btn:hover { background: rgba(124,58,237,0.18); }
+
+  .save-btn {
+    width: 100%;
+    background: linear-gradient(135deg, var(--accent), #5b21b6);
+    border: none;
+    color: white;
+    padding: 0.85rem;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 0.5rem;
+  }
+
+  .save-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+  .save-success {
+    display: none;
+    background: rgba(16,185,129,0.15);
+    border: 1px solid rgba(16,185,129,0.3);
+    color: var(--green);
+    text-align: center;
+    padding: 0.7rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-top: 0.8rem;
+  }
+
+  /* scrollbar */
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+
+  @media (max-width: 600px) {
+    nav { padding: 1rem 1.2rem; }
+    .nav-links { display: none; }
+    .earn-banner { padding: 1.5rem; gap: 1.5rem; }
+    .earn-stats { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">⚡ AIToolsHub</div>
+  <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">AI Tools</a></li>
+    <li><a href="#">Earn Online</a></li>
+    <li><a href="#">Blog</a></li>
+  </ul>
+  <button class="settings-btn" onclick="openSettings()">
+    ⚙️ Settings
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero-section">
+  <div class="hero-bg" id="hero-bg"></div>
+  <div class="hero-gradient"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge">🤖 AI Tools & Earnings 2024</div>
+    <h1 id="hero-title">Best <span>AI Tools</span> to<br>Earn Money Online</h1>
+    <p id="hero-subtitle">Discover top-rated AI tools with affiliate programs. Earn commissions by sharing tools you love — no experience needed.</p>
+    <a href="#" class="hero-cta" id="hero-cta">🚀 Explore Top Tools</a>
+  </div>
+</section>
+
+<!-- EARNING BANNER -->
+<div class="section" style="padding-top: 0; padding-bottom: 2rem;">
+  <div class="earn-banner">
+    <div class="earn-text">
+      <h2>💰 Earn With Every Referral</h2>
+      <p>Join thousands of creators earning passive income by recommending AI tools to their audience.</p>
+    </div>
+    <div class="earn-stats">
+      <div class="stat-item">
+        <div class="stat-num">40%</div>
+        <div class="stat-label">Avg Commission</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">50+</div>
+        <div class="stat-label">AI Tools Listed</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">₹5L+</div>
+        <div class="stat-label">Paid to Partners</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOOLS -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-label">🔥 Featured</div>
+    <h2 class="section-title">Top AI Tools with Affiliate Programs</h2>
+  </div>
+  <div class="tools-grid" id="tools-grid">
+    <!-- Populated by JS -->
+  </div>
+</div>
+
+<footer>
+  <div class="logo">⚡ AIToolsHub</div>
+  <span>© 2024 AIToolsHub. All rights reserved.</span>
+  <span>Affiliate Disclosure: We earn commissions from referrals.</span>
+</footer>
+
+
+<!-- ===== SETTINGS PANEL ===== -->
+<div class="settings-overlay" id="settings-overlay" onclick="closeOnOverlay(event)">
+  <div class="settings-panel">
+    <div class="settings-header">
+      <h2>⚙️ Site Settings</h2>
+      <button class="close-btn" onclick="closeSettings()">✕</button>
+    </div>
+
+    <!-- BANNER SETTINGS -->
+    <div class="settings-section">
+      <div class="settings-section-title">🖼️ Hero Banner</div>
+
+      <div class="form-group">
+        <label>Banner Title</label>
+        <input type="text" id="s-title" placeholder="Best AI Tools to Earn Money Online">
+      </div>
+
+      <div class="form-group">
+        <label>Banner Subtitle</label>
+        <textarea id="s-subtitle" rows="2" placeholder="Short description..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Banner Button Text</label>
+        <input type="text" id="s-cta-text" placeholder="🚀 Explore Top Tools">
+      </div>
+
+      <div class="form-group">
+        <label>Button Link (URL)</label>
+        <input type="url" id="s-cta-link" placeholder="https://...">
+      </div>
+
+      <div class="form-group">
+        <label>Background Image URL</label>
+        <input type="url" id="s-banner-img" placeholder="https://example.com/image.jpg">
+      </div>
+    </div>
+
+    <!-- TOOLS SETTINGS -->
+    <div class="settings-section">
+      <div class="settings-section-title">🛠️ Affiliate Tool Cards</div>
+      <div id="tool-entries"></div>
+      <button class="add-tool-btn" onclick="addToolEntry()">+ Add New Tool Card</button>
+    </div>
+
+    <button class="save-btn" onclick="saveSettings()">💾 Save Changes</button>
+    <div class="save-success" id="save-success">✅ Settings saved successfully!</div>
+  </div>
+</div>
+
+
+<script>
+  // Default data
+  const defaultTools = [
+    {
+      icon: "🤖", color: "#7c3aed",
+      name: "ChatGPT Plus",
+      desc: "OpenAI's most powerful AI assistant for writing, coding, and research.",
+      earn: "$20/month commission",
+      stars: "★★★★★",
+      badge: "Hot",
+      link: "https://openai.com"
+    },
+    {
+      icon: "🎨", color: "#06b6d4",
+      name: "Midjourney",
+      desc: "Generate stunning AI images for clients, social media, and digital products.",
+      earn: "30% recurring",
+      stars: "★★★★★",
+      badge: "Top Pick",
+      link: "https://midjourney.com"
+    },
+    {
+      icon: "✍️", color: "#f59e0b",
+      name: "Jasper AI",
+      desc: "AI copywriting tool loved by marketers. High-ticket affiliate program.",
+      earn: "Up to $200/ref",
+      stars: "★★★★☆",
+      badge: "High Pay",
+      link: "https://jasper.ai"
+    },
+    {
+      icon: "🎙️", color: "#10b981",
+      name: "ElevenLabs",
+      desc: "AI voice cloning and text-to-speech. Perfect for YouTubers and podcasters.",
+      earn: "22% per sale",
+      stars: "★★★★★",
+      badge: "Trending",
+      link: "https://elevenlabs.io"
+    },
+    {
+      icon: "📊", color: "#ec4899",
+      name: "Notion AI",
+      desc: "Supercharge productivity with AI-powered note-taking and project management.",
+      earn: "50% first payment",
+      stars: "★★★★☆",
+      badge: "Popular",
+      link: "https://notion.so"
+    },
+    {
+      icon: "🔍", color: "#8b5cf6",
+      name: "Perplexity AI",
+      desc: "AI-powered search engine. Share and earn with their referral program.",
+      earn: "$10 per Pro signup",
+      stars: "★★★★★",
+      badge: "New",
+      link: "https://perplexity.ai"
+    }
+  ];
+
+  let siteData = JSON.parse(localStorage.getItem('aith_data') || 'null') || {
+    title: "Best <span>AI Tools</span> to<br>Earn Money Online",
+    subtitle: "Discover top-rated AI tools with affiliate programs. Earn commissions by sharing tools you love — no experience needed.",
+    ctaText: "🚀 Explore Top Tools",
+    ctaLink: "#",
+    bannerImg: "",
+    tools: defaultTools
+  };
+
+  // Render tools
+  function renderTools() {
+    const grid = document.getElementById('tools-grid');
+    grid.innerHTML = siteData.tools.map(t => `
+      <div class="tool-card">
+        <div class="tool-icon" style="background:${t.color}22">${t.icon}</div>
+        <div class="tool-badge">${t.badge || 'New'}</div>
+        <h3>${t.name}</h3>
+        <p>${t.desc}</p>
+        <div class="tool-meta">
+          <div class="tool-earn">${t.earn} <span>commission</span></div>
+          <div class="stars">${t.stars}</div>
+        </div>
+        <a href="${t.link}" class="tool-link" target="_blank">Get Affiliate Link →</a>
+      </div>
+    `).join('');
+  }
+
+  // Apply hero
+  function applyHero() {
+    document.getElementById('hero-title').innerHTML = siteData.title;
+    document.getElementById('hero-subtitle').textContent = siteData.subtitle;
+    document.getElementById('hero-cta').textContent = siteData.ctaText;
+    document.getElementById('hero-cta').href = siteData.ctaLink || '#';
+    if (siteData.bannerImg) {
+      document.getElementById('hero-bg').style.backgroundImage = `url(${siteData.bannerImg})`;
+    }
+  }
+
+  // Settings panel
+  function openSettings() {
+    // Populate fields
+    document.getElementById('s-title').value = siteData.title.replace(/<[^>]*>/g,'');
+    document.getElementById('s-subtitle').value = siteData.subtitle;
+    document.getElementById('s-cta-text').value = siteData.ctaText;
+    document.getElementById('s-cta-link').value = siteData.ctaLink;
+    document.getElementById('s-banner-img').value = siteData.bannerImg;
+    renderToolEntries();
+    document.getElementById('settings-overlay').classList.add('open');
+    document.getElementById('save-success').style.display = 'none';
+  }
+
+  function closeSettings() {
+    document.getElementById('settings-overlay').classList.remove('open');
+  }
+
+  function closeOnOverlay(e) {
+    if (e.target === document.getElementById('settings-overlay')) closeSettings();
+  }
+
+  function renderToolEntries() {
+    const container = document.getElementById('tool-entries');
+    container.innerHTML = siteData.tools.map((t, i) => `
+      <div class="tool-entry" id="entry-${i}">
+        <div class="tool-entry-header">
+          <span class="tool-entry-title">${t.icon} ${t.name}</span>
+          <button class="remove-btn" onclick="removeTool(${i})">Remove</button>
+        </div>
+        <div class="form-group" style="margin-bottom:0.7rem">
+          <label>Icon (emoji)</label>
+          <input type="text" data-field="icon" data-idx="${i}" value="${t.icon}">
+        </div>
+        <div class="form-group" style="margin-bottom:0.7rem">
+          <label>Tool Name</label>
+          <input type="text" data-field="name" data-idx="${i}" value="${t.name}">
+        </div>
+        <div class="form-group" style="margin-bottom:0.7rem">
+          <label>Description</label>
+          <textarea data-field="desc" data-idx="${i}" rows="2">${t.desc}</textarea>
+        </div>
+        <div class="form-group" style="margin-bottom:0.7rem">
+          <label>Earning Info</label>
+          <input type="text" data-field="earn" data-idx="${i}" value="${t.earn}">
+        </div>
+        <div class="form-group" style="margin-bottom:0.7rem">
+          <label>Badge Text</label>
+          <input type="text" data-field="badge" data-idx="${i}" value="${t.badge}">
+        </div>
+        <div class="form-group" style="margin-bottom:0">
+          <label>Affiliate Link (URL)</label>
+          <input type="url" data-field="link" data-idx="${i}" value="${t.link}">
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function addToolEntry() {
+    siteData.tools.push({
+      icon: "🔗", color: "#7c3aed",
+      name: "New Tool",
+      desc: "Add description here.",
+      earn: "XX% commission",
+      stars: "★★★★★",
+      badge: "New",
+      link: "https://"
+    });
+    renderToolEntries();
+  }
+
+  function removeTool(i) {
+    siteData.tools.splice(i, 1);
+    renderToolEntries();
+  }
+
+  function saveSettings() {
+    // Read hero
+    siteData.title = document.getElementById('s-title').value;
+    siteData.subtitle = document.getElementById('s-subtitle').value;
+    siteData.ctaText = document.getElementById('s-cta-text').value;
+    siteData.ctaLink = document.getElementById('s-cta-link').value;
+    siteData.bannerImg = document.getElementById('s-banner-img').value;
+
+    // Read tool fields
+    document.querySelectorAll('[data-field]').forEach(el => {
+      const idx = parseInt(el.dataset.idx);
+      const field = el.dataset.field;
+      if (siteData.tools[idx]) {
+        siteData.tools[idx][field] = el.value;
+      }
+    });
+
+    localStorage.setItem('aith_data', JSON.stringify(siteData));
+    applyHero();
+    renderTools();
+
+    const msg = document.getElementById('save-success');
+    msg.style.display = 'block';
+    setTimeout(() => msg.style.display = 'none', 3000);
+  }
+
+  // Init
+  applyHero();
+  renderTools();
+</script>
+</body>
+</html>
